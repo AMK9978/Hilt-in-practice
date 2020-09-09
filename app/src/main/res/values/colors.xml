@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="dark_blue_grey">#1f3048</color>
+    <color name="black">#000000</color>
+    <color name="squash">#f7991d</color>
+    <color name="white_two">#f7f6f6</color>
+    <color name="white_0">#00ffffff</color>
+    <color name="cool_grey">#a0a7b0</color>
+    <color name="mango">#f8a232</color>
+    <color name="pale">#fef0de</color>
+    <color name="pale_grey">#f9f9fa</color>
+    <color name="chocolate_brown">#432600</color>
+    <color name="beige">#efe0cc</color>
+    <color name="dirty_orange">#cb7a0f</color>
+</resources>
