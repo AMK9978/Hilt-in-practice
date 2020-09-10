@@ -1,9 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/producers_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/type_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/iran_sans_fanum"
+                        android:lineSpacingExtra="7sp"
+                        android:text="کتاب الکترونیکی"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/language" />
+
+
+                    <TextView
+                        android:id="@+id/language_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="22dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/iran_sans_fanum"
+                        android:lineSpacingExtra="7sp"
+                        android:text="زبان فارسی"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/language" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/iran_sans_fanum"
+                        android:lineSpacingExtra="7sp"
+                        android:text="کتاب الکترونیکی"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/language" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="22dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/iran_sans_fanum"
+                        android:lineSpacingExtra="7sp"
+                        android:text="زبان فارسی"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/language" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/iran_sans_fanum"
+                        android:lineSpacingExtra="7sp"
+                        android:text="کتاب الکترونیکی"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/language" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="22dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/iran_sans_fanum"
+                        android:lineSpacingExtra="7sp"
+                        android:text="زبان فارسی"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:drawableStartCompat="@drawable/language" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/iran_sans_bold"
+                    android:lineSpacingExtra="7sp"
+                    android:text="خلاصه کتاب"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:padding="5dp"
+                    android:src="@color/pale" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/iran_sans_fanum"
+                android:lineSpacingExtra="7sp"
+                android:text="کتاب «ملت عشق» نوشته الیف شافاک ( -۱۹۷۱) نویسنده ترک است، که در
+ایران با ترجمه ارسلان فصیحی منتشر شده است"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/show_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/iran_sans_fanum"
+                android:lineSpacingExtra="7sp"
+                android:text="نمایش بیشتر"
+                android:textColor="@color/dirty_orange"
+                android:textSize="16sp"
+                app:drawableLeftCompat="@drawable/ic_baseline_expand_more_24" />
+        </LinearLayout>
+    </ScrollView>
 </layout>
