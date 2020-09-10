@@ -74,6 +74,7 @@
                     android:padding="8dp">
 
                     <TextView
+                        android:id="@+id/publisher_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -86,6 +87,7 @@
                         app:drawableStartCompat="@drawable/language" />
 
                     <TextView
+                        android:id="@+id/pages_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -112,6 +114,7 @@
                     android:padding="8dp">
 
                     <TextView
+                        android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -124,6 +127,7 @@
                         app:drawableStartCompat="@drawable/language" />
 
                     <TextView
+                        android:id="@+id/size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -165,6 +169,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
