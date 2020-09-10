@@ -34,6 +34,12 @@ public class TabAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return null;
+        if (position == 0) {
+            return "نظرات";
+        } else if (position == 1) {
+            return "فهرست";
+        } else {
+            return "اطلاعات";
+        }
     }
 }

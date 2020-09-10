@@ -16,7 +16,7 @@ class ContentFragment : Fragment() {
     private lateinit var binding: ContentFragmentLayoutBinding
 
     companion object {
-        fun newInstance() = InfoFragment()
+        fun newInstance() = ContentFragment()
     }
 
     override fun onCreateView(

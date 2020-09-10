@@ -2,6 +2,7 @@ package com.hoodad.test.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -22,22 +23,17 @@ import kotlin.math.abs
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: TabAdapter
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, InfoFragment.newInstance())
-                .commitNow()
-        }
+        adapter = TabAdapter(supportFragmentManager)
         adapter.addFragment(CommentsFragment.newInstance())
         adapter.addFragment(ContentFragment.newInstance())
         adapter.addFragment(InfoFragment.newInstance())
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.viewPager.currentItem = 2
 
         binding.appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {

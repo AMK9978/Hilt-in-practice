@@ -16,7 +16,7 @@ class CommentsFragment : Fragment() {
     private lateinit var binding: CommentsFragmentLayoutBinding
 
     companion object {
-        fun newInstance() = InfoFragment()
+        fun newInstance() = CommentsFragment()
     }
 
     override fun onCreateView(
