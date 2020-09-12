@@ -4,13 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.hoodad.test.R
 import com.hoodad.test.databinding.ActivityMainBinding
@@ -22,7 +21,6 @@ import com.hoodad.test.ui.main.TabAdapter
 import com.hoodad.test.utils.Status
 import com.hoodad.test.utils.Util
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.episod_layout.*
 import kotlin.math.abs
 
 
@@ -30,6 +28,7 @@ import kotlin.math.abs
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: TabAdapter
+    private lateinit var downloadURL: String
     private val mainViewModel: MainViewModel by viewModels()
 
     init {
@@ -46,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
         binding.viewPager.currentItem = 2
+        setSupportActionBar(binding.toolbar);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false);
 
         binding.appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
@@ -65,17 +68,36 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        if (this::downloadURL.isInitialized) {
+            binding.download.setOnClickListener {
+                Util.download(this, downloadURL, 0, "درحال دانلود ")
+            }
+        }
         init()
         setupObserver()
     }
 
 
     private fun setupObserver() {
-        mainViewModel.episodes.observe(this, Observer {
+        mainViewModel.fetchUsers(45667, false)
+        mainViewModel.booksInfo.observe(this, Observer {
             Log.i("TAG", "How is it going ?!")
             when (it.status) {
                 Status.SUCCESS -> {
-                    Log.i("TAG", "what the hell is going on?!")
+                    Glide.with(this).load(it.data?.result?.PhotoUrl).into(binding.bookImage)
+                    Glide.with(this).load(it.data?.result?.PhotoUrl).centerCrop()
+                        .into(binding.appBarImage)
+                    binding.bookTitle.text = it.data?.result?.Title
+                    binding.subTitle.text = it.data?.result?.SubTitle
+                    binding.priceText.text = it.data?.result?.Price?.PriceDescription
+                    binding.rating.text = it.data?.result?.AverageRate.toString()
+                    it.data?.result?.SyncUrl?.let {
+                        downloadURL = it
+                    }
+                    Log.i(
+                        "TAG",
+                        "ARRR:" + it.data?.result?.Title + " " + it.data?.result?.AverageRate.toString()
+                    )
                 }
                 Status.LOADING -> {
                 }
@@ -117,7 +139,10 @@ class MainActivity : AppCompatActivity() {
             Util.NEED_PROFILE,
             "true"
         ).commit()
-        Log.i("TAG", getSharedPreferences(Util.PREF_NAME, Context.MODE_PRIVATE).getString(Util.TOKEN, ""))
+        Log.i(
+            "TAG",
+            getSharedPreferences(Util.PREF_NAME, Context.MODE_PRIVATE).getString(Util.TOKEN, "")
+        )
 //        mainViewModel.fetchUsers(45667, false)
     }
 }

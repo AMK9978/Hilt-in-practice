@@ -35,6 +35,8 @@
                     <TextView
                         android:id="@+id/type_title"
                         android:layout_width="wrap_content"
+
+                        android:maxLength="20"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:drawablePadding="8dp"
@@ -51,6 +53,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+
+                        android:maxLength="20"
                         android:layout_marginTop="22dp"
                         android:drawablePadding="8dp"
                         android:fontFamily="@font/iran_sans_fanum"
@@ -75,6 +79,7 @@
 
                     <TextView
                         android:id="@+id/publisher_title"
+                        android:maxLength="20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -87,9 +92,10 @@
                         app:drawableStartCompat="@drawable/language" />
 
                     <TextView
-                        android:id="@+id/pages_count"
+                        android:id="@+id/duration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxLength="20"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="22dp"
                         android:drawablePadding="8dp"
@@ -115,6 +121,8 @@
 
                     <TextView
                         android:id="@+id/date"
+
+                        android:maxLength="20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -131,6 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:maxLength="20"
                         android:layout_marginTop="22dp"
                         android:drawablePadding="8dp"
                         android:fontFamily="@font/iran_sans_fanum"
@@ -175,6 +184,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/iran_sans_fanum"
                 android:lineSpacingExtra="7sp"
+                android:maxLines="2"
                 android:text="کتاب «ملت عشق» نوشته الیف شافاک ( -۱۹۷۱) نویسنده ترک است، که در
 ایران با ترجمه ارسلان فصیحی منتشر شده است"
                 android:textColor="@color/black"
@@ -187,7 +197,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/iran_sans_fanum"
-                android:lineSpacingExtra="7sp"
                 android:text="نمایش بیشتر"
                 android:textColor="@color/dirty_orange"
                 android:textSize="16sp"

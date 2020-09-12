@@ -1,6 +1,9 @@
 package com.hoodad.test.utils
 
+import android.app.DownloadManager
 import android.content.Context
+import android.database.Cursor
+import android.net.Uri
 
 class Util {
     companion object {
@@ -22,6 +25,20 @@ class Util {
         fun getPrefString(context: Context, key: String): String {
             return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(key, "")
                 ?: ""
+        }
+
+        fun download(context: Context, url: String?, totalSize: Long?, title: String) {
+            val request = DownloadManager.Request(Uri.parse(url))
+            val mgr = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            request.setTitle(title)
+            val id = mgr.enqueue(request)
+            val q = DownloadManager.Query()
+            q.setFilterById(id)
+            val cursor: Cursor = mgr.query(q)
+            cursor.moveToFirst()
+            val bytes_downloaded: Int =
+                cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
+            cursor.close()
         }
     }
 

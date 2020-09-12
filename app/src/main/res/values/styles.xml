@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/pale</item>
     </style>
 
+    <style name="TabsStyle" parent="@android:style/TextAppearance.Small">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="fontFamily">@font/iran_sans_fanum</item>
+    </style>
 </resources>

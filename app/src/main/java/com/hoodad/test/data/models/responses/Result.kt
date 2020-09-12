@@ -21,6 +21,7 @@ class Result {
     var SyncUrl: String? = null
     var SharingLink: String? = null
     var SharingText: String? = null
+    var PersianCreateDate: String? = null
     var AverageRate: Float? = null
     var Reviews: ArrayList<Review> = ArrayList()
     var PublisherName: String? = null
