@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoodad.test.R
+import com.hoodad.test.data.models.Book
 import com.hoodad.test.databinding.InfoFragmentLayoutBinding
 import com.hoodad.test.ui.main.MainViewModel
 import com.hoodad.test.utils.Status
@@ -21,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class InfoFragment : Fragment() {
     private lateinit var infoViewModel: InfoViewModel
     private val mainViewModel: MainViewModel by viewModels()
+    private lateinit var adapter: RecommendationAdapter
     private lateinit var binding: InfoFragmentLayoutBinding
     private var showMore: Boolean = false
 
@@ -61,6 +65,7 @@ class InfoFragment : Fragment() {
             }
             showMore = !showMore
         }
+        setupUI()
 
         return binding.root
     }
@@ -69,6 +74,19 @@ class InfoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mainViewModel.fetchUsers(45667, false)
         setupObserver()
+    }
+
+    private fun setupUI() {
+        binding.recommendations.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        adapter = RecommendationAdapter(arrayListOf())
+        binding.recommendations.addItemDecoration(
+            DividerItemDecoration(
+                binding.recommendations.context,
+                (binding.recommendations.layoutManager as LinearLayoutManager).orientation
+            )
+        )
+        binding.recommendations.adapter = adapter
     }
 
     private fun setupObserver() {
@@ -84,6 +102,13 @@ class InfoFragment : Fragment() {
                         binding.size.text = it.result?.SizeDescription
                         binding.publisherTitle.text = it.result?.PublisherName
                         binding.languageTitle.text = it.result?.Language
+                        try {
+                            binding.recommendationsTitle.text =
+                                it.result?.suggestions?.get(0)?.title
+                            it.result?.suggestions?.get(0)?.items?.let { it1 -> renderList(it1) }
+                        } catch (exception: IndexOutOfBoundsException) {
+                            Log.i("TAG", "Out of bound for recommendations:" + exception.message)
+                        }
                     }
                 }
                 Status.LOADING -> {
@@ -92,5 +117,11 @@ class InfoFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun renderList(books: List<Book>) {
+        adapter.addData(books)
+        adapter.notifyDataSetChanged()
+        Log.i("TAG", "Here's list:" + books.size)
     }
 }

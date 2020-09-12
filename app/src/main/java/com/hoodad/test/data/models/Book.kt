@@ -1,15 +1,17 @@
 package com.hoodad.test.data.models
 
+import com.hoodad.test.data.models.responses.Price
+
 class Book {
-    private var id : Int = 0
-    private var Type : String? = null
-    private var TypeTitle : String? = null
-    private var Title : String? = null
-    private var BookTitle : String? = null
-    private var PhotoUrl : String? = null
-    private var Content : String? = null
-    private var SyncUrl : String? = null
-    private var SharingLink : String? = null
-    private var SharingText : String? = null
-    private var Price : String? = null
+    var id : Int = 0
+    var Type : String? = null
+    var TypeTitle : String? = null
+    var Title : String? = null
+    var BookTitle : String? = null
+    var PhotoUrl : String? = null
+    var Content : String? = null
+    var SyncUrl : String? = null
+    var SharingLink : String? = null
+    var SharingText : String? = null
+    var Price : Price? = null
 }

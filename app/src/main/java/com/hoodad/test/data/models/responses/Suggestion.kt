@@ -1,10 +1,9 @@
 package com.hoodad.test.data.models.responses
 
+import com.hoodad.test.data.models.Book
+
 class Suggestion {
-    private var id : Int = 0
-    private var title : String? = null
-
-
-
-
+    var id : Int = 0
+    var title : String? = null
+    var items: List<Book> = ArrayList()
 }
