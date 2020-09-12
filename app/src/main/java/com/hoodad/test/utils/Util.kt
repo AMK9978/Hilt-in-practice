@@ -26,8 +26,3 @@ class Util {
     }
 
 }
-
-public fun Context.getToken(key: String){
-    getSharedPreferences(Util.PREF_NAME,
-        Context.MODE_PRIVATE).getString(key, "")
-}

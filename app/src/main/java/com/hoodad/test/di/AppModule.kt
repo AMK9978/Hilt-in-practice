@@ -1,6 +1,7 @@
 package com.hoodad.test.di
 
 import android.content.Context
+import com.google.gson.GsonBuilder
 import com.hoodad.test.data.api.APIHelper
 import com.hoodad.test.data.api.APIHelperImpl
 import com.hoodad.test.data.api.APIService
@@ -13,83 +14,45 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
 class AppModule {
 
-    @Inject
-    lateinit var token: String
-
-    @Inject
-    lateinit var appVersion: String
-
-    @Inject
-    lateinit var packageName: String
-
-    @Inject
-    lateinit var buildNumber: String
-
-    @Inject
-    lateinit var deviceID: String
-
-    @Inject
-    lateinit var deviceModel: String
-
-    @Inject
-    lateinit var deviceType: String
-
-    @Inject
-    lateinit var osVersion: String
-
-    @Inject
-    lateinit var accountType: String
-
-    @Inject
-    lateinit var needProfile: String
-
-    companion object {
-        private const val BASE_URL = "http://staging.api.taakmedia.ir/api/"
-
-    }
-
-    private val client: OkHttpClient = OkHttpClient.Builder().addInterceptor {
-        val newRequest =
-            it.request().newBuilder().addHeader("X-Ham-Seda-Login-Token", token)
-                .addHeader("X-Ham-Seda-App_Version", appVersion)
-                .addHeader("X-Ham-Seda-Package-Name", packageName)
-                .addHeader("X-Ham-Seda-Build-Number", buildNumber)
-                .addHeader("X-Ham-Seda-Device-Id", deviceID)
-                .addHeader("X-Ham-Seda-Device-Model", deviceModel)
-                .addHeader("X-Ham-Seda-Device-Type", deviceType)
-                .addHeader("X-Ham-Seda-Account-Type", accountType)
-                .addHeader("X-Ham-Seda-OS-Version", osVersion)
-                .addHeader("X-Ham-Seda-Need-Profile", needProfile)
-                .build()
-        it.proceed(newRequest)
-    }.build()
-
-    @Qualifiers.BASE_URL
-    @Singleton
     @Provides
-    fun provideBaseURL() = BASE_URL
+    @Singleton
+    fun provideClient(@ApplicationContext context: Context) =
+        OkHttpClient.Builder().addInterceptor {
+            val newRequest =
+                it.request().newBuilder()
+                    .addHeader("X-Ham-Seda-Login-Token", provideToken(context))
+                    .addHeader("X-Ham-Seda-App_Version", provideAppVersion(context))
+                    .addHeader("X-Ham-Seda-Package-Name", providePackageName(context))
+                    .addHeader("X-Ham-Seda-Build-Number", provideBuildNumber(context))
+                    .addHeader("X-Ham-Seda-Device-Id", provideDeviceID(context))
+                    .addHeader("X-Ham-Seda-Device-Model", provideDeviceModel(context))
+                    .addHeader("X-Ham-Seda-Device-Type", provideDeviceType(context))
+                    .addHeader("X-Ham-Seda-Account-Type", provideAccountType(context))
+                    .addHeader("X-Ham-Seda-OS-Version", provideOsVersion(context))
+                    .addHeader("X-Ham-Seda-Need-Profile", provideNeedProfile(context))
+                    .build()
+            it.proceed(newRequest)
+        }.build()
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = OkHttpClient.Builder().build()
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(
-        okHttpClient: OkHttpClient,
-        BASE_URL: String
-    ): Retrofit =
-        Retrofit.Builder().baseUrl(BASE_URL)
+    fun provideRetrofit(client: OkHttpClient): Retrofit =
+        Retrofit.Builder().baseUrl("http://staging.api.taakmedia.ir/api/")
             .client(client)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(
-                GsonConverterFactory.create()
+                GsonConverterFactory.create(
+                    GsonBuilder()
+                        .setLenient()
+                        .create()
+                )
             ).build()
 
     @Provides

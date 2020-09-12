@@ -1,16 +1,18 @@
 package com.hoodad.test.data.models.responses
 
 class Episod {
-    private var Id : Int? = null
-    private var Type : Int? = null
-    private var TypeTitle : String? = null
-    private var Title : String? = null
-    private var SubTitle : String? = null
-    private var BookTitle : String? = null
-    private var PhotoUrl : String? = null
-    private var SyncUrl : String? = null
-    private var SizeDescription : String? = null
-    private var Key : String? = null
+    var Id : Int? = null
+    var Type : Int? = null
+    var TypeTitle : String? = null
+    var Title : String? = null
+    var SubTitle : String? = null
+    var BookTitle : String? = null
+    var PhotoUrl : String? = null
+    var SyncUrl : String? = null
+    var SizeDescription : String? = null
+    var LengthTitle : String? = null
+    var Key : String? = null
+    var Size: Long? = null
 
 
 }
