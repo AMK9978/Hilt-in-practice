@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iran_sans_bold"
+            android:gravity="end"
+            android:lineSpacingExtra="7sp"
+            android:padding="8dp"
+            android:textColor="#323232"
+            android:textDirection="ltr"
+            android:textSize="16sp"
+            tools:text="امیر" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:src="@color/pale" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:id="@+id/rating"
+            android:background="@android:color/transparent"
+            android:clickable="false"
+            android:focusable="false"
+            android:isIndicator="true"
+            android:layoutDirection="ltr"
+            android:numStars="5"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:rating="4"
+            android:stepSize="1"
+            android:theme="@style/customRatingBar" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/comment_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iran_sans_fanum"
+        android:gravity="end"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#323232"
+        android:textDirection="ltr"
+        android:textSize="12sp"
+        tools:text="خیلی بده ک مجبوریم یه گیگ فایل رو یه جا دانلود کنیم. الان من ده بار مجبور شدم از اول دانلود کنم اخرم نشد. اینهمه زحمت میکشید بعد یه طراحی محصول مشکلدار همه چیو خراب میکنه" />
+
+</LinearLayout>
