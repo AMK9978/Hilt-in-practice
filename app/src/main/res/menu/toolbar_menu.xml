@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl">
+
+    <item
+        android:id="@+id/bookmark"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@drawable/bookmark"
+        android:title="بوکمارک"
+        android:visible="true"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/download"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@drawable/download"
+        android:title="دانلود"
+        android:visible="true"
+        app:showAsAction="always|withText" />
+
+
+</menu>

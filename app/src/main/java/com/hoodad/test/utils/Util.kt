@@ -4,6 +4,7 @@ import android.app.DownloadManager
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import android.os.Environment
 
 class Util {
     companion object {
@@ -27,10 +28,20 @@ class Util {
                 ?: ""
         }
 
-        fun download(context: Context, url: String?, totalSize: Long?, title: String) {
+        fun download(
+            context: Context,
+            url: String?,
+            totalSize: Long?,
+            title: String,
+            fileTitle: String
+        ) {
             val request = DownloadManager.Request(Uri.parse(url))
             val mgr = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             request.setTitle(title)
+            request.setDestinationInExternalPublicDir(
+                Environment.DIRECTORY_DOWNLOADS,
+                "$fileTitle.mp3"
+            )
             val id = mgr.enqueue(request)
             val q = DownloadManager.Query()
             q.setFilterById(id)
@@ -41,5 +52,4 @@ class Util {
             cursor.close()
         }
     }
-
 }

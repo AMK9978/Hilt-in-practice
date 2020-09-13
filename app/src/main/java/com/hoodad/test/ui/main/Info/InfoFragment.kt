@@ -69,7 +69,6 @@ class InfoFragment : Fragment() {
         }
         setupRecommendationList()
         setupProducersList()
-
         return binding.root
     }
 

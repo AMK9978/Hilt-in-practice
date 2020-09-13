@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingEnd="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    >
+
+    <TextView
+        android:background="@drawable/ic_genre_bg"
+        android:id="@+id/genre_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iran_sans_fanum"
+        android:lineSpacingExtra="7sp"
+        android:textColor="@color/white"
+        android:padding="4dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:textDirection="ltr"
+        android:textSize="12sp"
+        tools:text="عاشقانه" />
+
+</LinearLayout>

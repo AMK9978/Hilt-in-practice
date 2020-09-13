@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.episod_layout.view.*
 class ContentAdapter(private val episodes: ArrayList<Episod>) :
     RecyclerView.Adapter<ContentAdapter.DataViewHolder>() {
 
+    private lateinit var binding: DataViewHolder
+
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(
         itemView
     ) {
@@ -24,7 +26,13 @@ class ContentAdapter(private val episodes: ArrayList<Episod>) :
             Glide.with(itemView.context).load(episode.PhotoUrl).into(itemView.book_image)
             itemView.download.setOnClickListener {
                 itemView.download_icon.setImageResource(R.drawable.ic_baseline_close_24)
-                Util.download(itemView.context, episode.SyncUrl, episode.Size, "درحال دانلود " + episode.Title)
+                Util.download(
+                    itemView.context,
+                    episode.SyncUrl,
+                    episode.Size,
+                    "درحال دانلود " + episode.Title,
+                    episode.Title
+                )
             }
         }
     }
@@ -46,6 +54,7 @@ class ContentAdapter(private val episodes: ArrayList<Episod>) :
     fun addData(list: List<Episod>) {
         episodes.addAll(list)
     }
+
 }
 
 fun episodeSubTitleCreator(sizeDescription: String?, LengthTitle: String?): String {

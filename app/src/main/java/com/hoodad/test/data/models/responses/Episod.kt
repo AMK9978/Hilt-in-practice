@@ -4,7 +4,7 @@ class Episod {
     var Id : Int? = null
     var Type : Int? = null
     var TypeTitle : String? = null
-    var Title : String? = null
+    var Title : String = ""
     var SubTitle : String? = null
     var BookTitle : String? = null
     var PhotoUrl : String? = null
