@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoodad.test.R
 import com.hoodad.test.data.models.Book
+import com.hoodad.test.data.models.responses.ProducerInfo
 import com.hoodad.test.databinding.InfoFragmentLayoutBinding
 import com.hoodad.test.ui.main.MainViewModel
 import com.hoodad.test.utils.Status
@@ -25,6 +26,7 @@ class InfoFragment : Fragment() {
     private lateinit var infoViewModel: InfoViewModel
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var adapter: RecommendationAdapter
+    private lateinit var producersAdapter: ProducersAdapter
     private lateinit var binding: InfoFragmentLayoutBinding
     private var showMore: Boolean = false
 
@@ -65,7 +67,8 @@ class InfoFragment : Fragment() {
             }
             showMore = !showMore
         }
-        setupUI()
+        setupRecommendationList()
+        setupProducersList()
 
         return binding.root
     }
@@ -76,7 +79,7 @@ class InfoFragment : Fragment() {
         setupObserver()
     }
 
-    private fun setupUI() {
+    private fun setupRecommendationList() {
         binding.recommendations.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         adapter = RecommendationAdapter(arrayListOf())
@@ -87,6 +90,19 @@ class InfoFragment : Fragment() {
             )
         )
         binding.recommendations.adapter = adapter
+    }
+
+    private fun setupProducersList() {
+        binding.producersRecycler.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        producersAdapter = ProducersAdapter(arrayListOf())
+        binding.recommendations.addItemDecoration(
+            DividerItemDecoration(
+                binding.producersRecycler.context,
+                (binding.producersRecycler.layoutManager as LinearLayoutManager).orientation
+            )
+        )
+        binding.producersRecycler.adapter = producersAdapter
     }
 
     private fun setupObserver() {
@@ -102,13 +118,20 @@ class InfoFragment : Fragment() {
                         binding.size.text = it.result?.SizeDescription
                         binding.publisherTitle.text = it.result?.PublisherName
                         binding.languageTitle.text = it.result?.Language
-                        try {
-                            binding.recommendationsTitle.text =
-                                it.result?.suggestions?.get(0)?.title
-                            it.result?.suggestions?.get(0)?.items?.let { it1 -> renderList(it1) }
-                        } catch (exception: IndexOutOfBoundsException) {
-                            Log.i("TAG", "Out of bound for recommendations:" + exception.message)
+                        it.result?.suggestions?.size?.let {it1 ->
+                            if (it1 > 0) {
+                                binding.recommendationsTitle.text =
+                                    it.result?.suggestions?.get(0)?.title
+                                it.result?.suggestions?.get(0)?.items?.let { it2 -> renderList(it2) }
+                            }
                         }
+
+                        it.result?.ProducerList?.size?.let {it1 ->
+                            if (it1 > 0) {
+                                it.result?.ProducerList?.let { it2 -> renderProducerList(it2) }
+                            }
+                        }
+
                     }
                 }
                 Status.LOADING -> {
@@ -123,5 +146,11 @@ class InfoFragment : Fragment() {
         adapter.addData(books)
         adapter.notifyDataSetChanged()
         Log.i("TAG", "Here's list:" + books.size)
+    }
+
+    private fun renderProducerList(producersInfo: List<ProducerInfo>) {
+        producersAdapter.addData(producersInfo)
+        producersAdapter.notifyDataSetChanged()
+        Log.i("TAG", "Here's list:" + producersInfo.size)
     }
 }

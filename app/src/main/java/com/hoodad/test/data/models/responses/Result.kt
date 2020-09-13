@@ -10,7 +10,7 @@ class Result {
 
     @SerializedName("result")
     var suggestions: ArrayList<Suggestion> = ArrayList()
-    var ProducerList: ArrayList<Suggestion> = ArrayList()
+    var ProducerList: ArrayList<ProducerInfo> = ArrayList()
 
     var TypeTitle: String? = null
     var Title: String? = null
